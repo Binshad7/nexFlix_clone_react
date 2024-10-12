@@ -4,8 +4,8 @@ import { ENV_VARS } from "../config/envVars.js";
 
 export const protectRoute =async (req,res,next)=>{
  try{
-    const token = req.cookies['jwt-netflix'];
-    console.log(req.cookies);
+     console.log(req.cookies);
+    const token = req.cookies['Jwt-netflix'];
     
     if(!token){
         return res.status(401).json({success:false,message:'Unauthorized - No token Provided'})
@@ -18,6 +18,7 @@ export const protectRoute =async (req,res,next)=>{
     if(!user){
         return res.status(401).json({success:false,message:'Unauthorized - No token Provided'})
     }
+    req.user = user
     next()
  }catch(error){
     console.log('middleware  error',error.message);

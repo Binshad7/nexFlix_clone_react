@@ -4,7 +4,7 @@ import { ENV_VARS } from '../config/envVars.js'
 export const generateTokenAndSetCookie = (userId,res)=>{
     const token = jwt.sign({userId},ENV_VARS.JsToken,{expiresIn:'15d'}) ;
     
-    res.cookie("jwt-netflix",token,{
+    res.cookie("Jwt-netflix",token,{
         maxAge:15 *24 * 60 * 60 * 1000,  //15 days in ms
         httpOnly:true, // prevent xss attacks cross-site scripting attacks , make it not be access by js
         sameSite:'strict', // CSRF attacks cross-site request forgery attacks
