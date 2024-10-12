@@ -1,9 +1,15 @@
 // const express = require('express') // common JS
 import express from 'express'
-import authRoutes from './routes/auth.js'
+import morgan from 'morgan' ;
+
+import authRoutes from './routes/auth.routes.js'
+import movieRoutes from './routes/movie.routes.js'
+import tvRoutes from './routes/tvshow.routes.js'
+
 import {ENV_VARS} from './config/envVars.js'
 import { connectDB } from './config/db.js'
-import morgan from 'morgan' ;
+
+
 
 const app = express()
 const PORT = ENV_VARS.PORT
@@ -12,9 +18,12 @@ app.use(express.json());
 app.use(morgan('dev'))
 app.use(express.urlencoded({extends:true}))
 
-// api  routes
-
+// api  routes for login 
 app.use('/api/v1/auth',authRoutes)
+// for movie
+app.use('/api/v1/movies',movieRoutes)
+// tv shows
+app.use('/api/v1/tv',tvRoutes)
 
 app.listen(PORT,(()=>{
     try{
@@ -27,3 +36,6 @@ app.listen(PORT,(()=>{
     }
 
 }))
+
+
+
