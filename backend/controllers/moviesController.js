@@ -18,7 +18,7 @@ export const getMovieTrailers = async (req,res)=>{
         const data = await fetchFromTMDB(`https://api.themoviedb.org/3/tv/${id}/videos?language=en-US`)
         
         
-      return  res.status(200).json({status:200,message:data.results})
+      return  res.status(200).json({status:true,message:data.results})
     }catch(error){
         if(error.message.includes("404")){
            return res.status(404).send(null)
